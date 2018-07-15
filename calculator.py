@@ -1,13 +1,11 @@
-from tkinter import *
+import tkinter as tk
+from tkinter import messagebox
 
-root = Tk()
-root.title("Title")
-root.geometry("600x600")
-root.configure(background="#d9d9d9")
+root = tk.Tk()
 
-background_image = PhotoImage(file="6.png")
-background_image = image.resize((250, 250), Image.ANTIALIAS)
-background = Label(root, image=background_image, bd=0)
-background.pack()
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
 
+root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()

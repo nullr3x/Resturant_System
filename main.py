@@ -4,9 +4,11 @@ from tkinter import *
 from tkinter import messagebox
 import datetime
 import random
+import os
 
 
 root = Tk()
+root.geometry("1368x768+0+0")
 root.title("Resturant Managment System App")
 root.configure(bg = "#ff8000")
 
@@ -33,6 +35,21 @@ calculator.place(x=1050 , y=100)
 made = Label(root , text = "*Sahil Mehra" ,  bg = "#ff8000" , fg = "cyan" , font = ('helevetica','15','bold italic'))
 made.place(x=1200 ,y=650)
 
+#########################################################################################
+
+
+ent1 = StringVar()
+ent2 = StringVar()
+ent3 = StringVar()
+ent4 = StringVar()
+ent5 = StringVar()
+ent6 = StringVar()
+ent7 = StringVar()
+ent8 = StringVar()
+ent9 = StringVar()
+ent10 = StringVar()
+ent11 = StringVar()
+ent12 = StringVar()
 
 #########################################################################################
 #############################___Left_Labels_Design___####################################
@@ -113,7 +130,7 @@ ent9.place(x=660, y=180)
 
 ########################
 
-lab10 = Label(root , text = "Tax" , bg = "#ff8000" , fg = "cyan" , font = ('helevetica','15','bold italic'))
+lab10 = Label(root , text = "Sales Tax" , bg = "#ff8000" , fg = "cyan" , font = ('helevetica','15','bold italic'))
 lab10.place(x=500, y=220)
 
 ent10 = Entry(root , bd =5 , justify='right')
@@ -138,27 +155,27 @@ ent12.place(x=660, y=300)
 #########################################################################################
 ###############################___Calculator_Button___###################################
 #########################################################################################
-text = Stringvar()
+text_input = StringVar()
 operator =""
 
 def  btnclick(numbers):
     global operator
     operator=operator + str(numbers)
-    text_Input.set(operator)
+    text_input.set(operator)
 
 def clrdisplay():
     global operator
     operator=""
-    text_Input.set("")
+    text_input.set("")
 
 def equal():
     global operator
     sumup=str(eval(operator))
 
-    text_Input.set(sumup)
+    text_input.set(sumup)
     operator = ""
 
-disp = Entry(root , text = text , bd=5 ,width=30 ,bg="white",justify='right')
+disp = Entry(root , text = text_input , bd=5 ,width=30 ,bg="white",justify='right')
 disp.place(x=1000 , y=140)
 
                     #----------------------------Calvulator_Buttons------------------------------#
@@ -189,8 +206,11 @@ btn2.place(x=1070 , y=320)
 btn3=Button(root,padx=10,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="3",bg="powder blue", command=lambda: btnclick(3) )
 btn3.place(x=1140 , y=320)
                                 #---------------------------------------------------#
-btn0=Button(root,padx=45,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="0",bg="powder blue", command=lambda: btnclick(0) )
-btn0.place(x=1000 , y=390)
+btn0=Button(root,padx=10,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="0",bg="powder blue", command=lambda: btnclick(0) )
+btn0.place(x=1070 , y=390)
+
+clear=Button(root,padx=10,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="C",bg="powder blue", command=clrdisplay)
+clear.place(x=1000 , y=390)
 
 add = Button(root,padx=9,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="+",bg="powder blue", command=lambda: btnclick('+') )
 add.place(x=1208 , y=180)
@@ -204,7 +224,7 @@ mul.place(x=1140 , y=390)
 div = Button(root,padx=15,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="/",bg="powder blue", command=lambda: btnclick('/') )
 div.place(x=1208 , y=320)
 
-equal = Button(root,padx=10,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="=",bg="powder blue", command=lambda: btnclick('=') )
+equal = Button(root,padx=10,pady=8,bd=4, fg="black", font=('ariel', 15 ,'bold'),text="=",bg="powder blue", command=equal)
 equal.place(x=1208 , y=390)
 
 #########################################################################################
@@ -252,32 +272,41 @@ def price():
     item5 = Label(roo, font = ('helevetica','15','bold italic'), text="       5.) Cheese Burger", fg="steel blue", anchor=W)
     item5.grid(row=5, column=0)
 
-    item6 = Label(roo, font=('aria', 15, 'bold'), text="30", fg="steel blue", anchor=W)
-    item6.grid(row=5, column=3)
+    item5 = Label(roo, font=('aria', 15, 'bold'), text="30", fg="steel blue", anchor=W)
+    item5.grid(row=5, column=3)
 
-    item7 = Label(roo, font = ('helevetica','15','bold italic'), text="6.) Drinks", fg="steel blue", anchor=W)
-    item7.grid(row=6, column=0)
+    item6 = Label(roo, font = ('helevetica','15','bold italic'), text="6.) Drinks", fg="steel blue", anchor=W)
+    item6.grid(row=6, column=0)
 
-    item7 = Label(roo, font=('aria', 15, 'bold'), text="35", fg="steel blue", anchor=W)
-    item7.grid(row=6, column=3)
+    item6 = Label(roo, font=('aria', 15, 'bold'), text="35", fg="steel blue", anchor=W)
+    item6.grid(row=6, column=3)
 
-    root.mainloop()
+    roo.mainloop()
 
                             #---Generate Invoice Bill---#
-
+def invoice():
+    os.system('python invoice.py')
 
                                     #---Total---#
 def total():
-    x = random.randint(12980, 50876)
-    randomRef = str(x)
-    rand.set(randomRef)
+    li = [ent2 , ent3 , ent4 , ent5 , ent6 , ent7]
+    def totele():
+        for i in tot:
+            num = 0
+            num = num + i
+        return num
 
-    fried = float(ent1.get())
-    lunch = float(ent2.get())
-    burger = float(ent3.get())
-    pizza = float(ent4.get())
-    cheese = float(ent5.get())
-    drink = float(ent6.get())
+
+    x = random.randint(10000, 99999)
+    randomint = str(x)
+    ent1.insert(END , randomint)
+
+    fried = float(ent2.get())
+    lunch = float(ent3.get())
+    burger = float(ent4.get())
+    pizza = float(ent5.get())
+    cheese = float(ent6.get())
+    drink = float(ent7.get())
 
     fri_price = fried * 25
     lunch_price = lunch * 40
@@ -286,45 +315,47 @@ def total():
     cheese_price = cheese * 50
     drink_price = drink * 35
 
-    cost_of_meal = "Rs.", str('%.2f' % (fri_price + lunch_price + burger_price + pizza_price + cheese_price + drink_price))
-    PayTax = ((fri_price + lunch_price + burger_price + pizza_price + cheese_price + drink_price) * 0.33)
-    Totalcost = (fri_price + lunch_price + burger_price + pizza_price + cheese_price + drink_price)
-    Ser_Charge = ((fri_price + lunch_price + burger_price + pizza_price + cheese_price + drink_price) / 99)
-    Service = "Rs.", str('%.2f' % Ser_Charge)
-    OverAllCost = "Rs.", str(PayTax + Totalcost + Ser_Charge)
-    PaidTax = "Rs.", str('%.2f' % PayTax)
+    Total = "Rs.", str('%.2f' % (totele()))
+    Tax = ((totele()) * 0.33)
+    cost = (totele())
+    Ser_Charge = ((totele()) / 99)
+    ent9 = "Rs.", str('%.2f' % Ser_Charge)
 
-    Service_Charge.set(Service)
-    cost.set(costofmeal)
-    Tax.set(PaidTax)
-    Subtotal.set(costofmeal)
-    Total.set(OverAllCost)
+    test = Tax + Total + Ser_Charge
+
+    Subtotal = "Rs.", str(test)
+    ent10 = "Rs.", str('%.2f' % Tax)
+
+    cost.set(ent8)
+    Ser_Charge.set(ent9)
+    Tax.set(ent10)
+    Subtotal.set(ent11)
+    Total.set(ent12)
 
         #---Reset---#
 def reset():
-    rand.set("")
-    Fries.set("")
-    Largefries.set("")
-    Burger.set("")
-    Filet.set("")
-    Subtotal.set("")
-    Total.set("")
-    Service_Charge.set("")
-    Drinks.set("")
-    Tax.set("")
-    cost.set("")
-    Cheese_burger.set("")
+    ent1.set("")
+    ent2.set("")
+    ent3.set("")
+    ent4.set("")
+    ent5.set("")
+    ent6.set("")
+    ent7.set("")
+    ent8.set("")
+    ent9.set("")
+    ent10.set("")
+    ent11.set("")
+    ent12.set("")
 
         #---Exit---#
-def exit():
-    global root
-    root.quit()
-
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
 #########################################################################################
 #######################################___Buttons__######################################
 #########################################################################################
 
-invoice = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=51, text="Generate Invoice Bill", bg="red",command=price)
+invoice = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=51, text="Generate Invoice Bill", bg="red",command=invoice)
 invoice.place(x=40 ,y=405)
 
 price = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=10, text="Price", bg="red",command=price)
@@ -336,9 +367,10 @@ total.place(x=245 ,y=460)
 reset = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=10, text="Reset", bg="red",command=reset)
 reset.place(x=450 ,y=460)
 
-exit = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=10, text="Exit", bg="red",command=exit)
+exit = Button(root, bd=5 ,fg="black",font=('ariel' ,16,'bold'),width=10, text="Exit", bg="red",command=on_closing)
 exit.place(x=655 , y=460)
 
 #########################################################################################
 
+root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
