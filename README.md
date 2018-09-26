@@ -4,7 +4,7 @@ Resturant Management System is design for the Resturants Billing System to make 
 Its a GUI Version written in Python.
 
 # Screenshot
-![alt text](https://github.com/Mehra1998/Resturant_Managemenet_System/blob/master/Screenshot%20from%202018-07-19%2019-31-33.png)
+![alt text](https://raw.githubusercontent.com/Mehra1998/Resturant_System/master/Screenshot/Screenshot.png)
 
 # Installation
 
